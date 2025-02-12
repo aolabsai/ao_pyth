@@ -2,6 +2,24 @@ import requests
 
 ao_endpoint_url = "https://api.aolabs.ai/v0dev/kennel/agent"
 
+
+
+def kennel_create(self, kennel_name, arch_url, description, permissions="free and open as the sea!"):
+    payload = {
+        "kennel_name": kennel_name,
+        "arch_URL": arch_url,
+        "description": description,
+        "permissions": permissions
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json"
+    }
+
+    response = requests.post(ao_endpoint_url, json=payload, headers=headers)
+    return response
+
+
 class Agent():
     def __init__(self, uid, kennel_id, api_key):
         self.uid = uid
@@ -71,21 +89,6 @@ class Agent():
         }
         agent_response = requests.post(ao_endpoint_url, json=payload, headers=headers).json()
         return agent_response
-    
-    def kennel_create(self, kennel_name, arch_url, description, permissions="free and open as the sea!"):
-        payload = {
-            "kennel_name": kennel_name,
-            "arch_URL": arch_url,
-            "description": description,
-            "permissions": permissions
-        }
-        headers = {
-            "accept": "application/json",
-            "content-type": "application/json"
-        }
-
-        response = requests.post(ao_endpoint_url, json=payload, headers=headers)
-        return response
 
 
     def agent_delete(self):

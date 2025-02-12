@@ -1,4 +1,4 @@
-import ao_core.ao_core as ao
+import ao_core as ao
 from config import api_key
 
 agent = ao.Agent("RafiApi_wrapperTest", "recommender3", api_key)
