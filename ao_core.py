@@ -31,7 +31,9 @@ class Agent():
         }
 
         agent_response = requests.post(ao_endpoint_url, json=payload, headers=headers).json()
-        return agent_response.get("story")
+        return agent_response
+    
+
     def reset_state(self):
         pass
 
@@ -39,6 +41,19 @@ class Agent():
         pass
 
     def agent_delete(self):
-        pass
+        payload = {
+            "kennel_id": self.kennel_id,
+            "agent_id": self.uid,
+            "request": "delete_agent"
+        }
+
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "X-API-KEY": f"{self.api_key}"
+        }
+        response = requests.post(ao_endpoint_url, json=payload, headers=headers)
+        print("Agent delete response: ", response.text)
+        return response
 
 
