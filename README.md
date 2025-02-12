@@ -13,7 +13,7 @@ pip install git+https://github.com/aolabsai/pythonApiWrapper
 
 To create a new kennel use:
 ```bash
-ao.kennel_create(kennel_name, arch_url, description)
+ao.kennel_create(kennel_name, arch_url, api_key, description)
 ```
 
 To initalise our agents use
