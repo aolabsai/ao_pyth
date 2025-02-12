@@ -13,7 +13,7 @@ def kennel_create(kennel_name, arch_url, api_key, description, permissions="free
     }
     headers = {
         "accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
         "X-API-KEY": api_key
     }
 
