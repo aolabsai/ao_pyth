@@ -1,0 +1,34 @@
+[project]
+name = "ao_core"
+version = "0.1.3"
+license = {file = "LICENSE.txt"}
+dependencies = [
+    "requests",
+]
+authors = [
+  { name="AO Labs", email="eng@aolabs.ai" },
+  { name="Ali Al-Ebrahim", email="aee@aolabs.ai" },
+]
+description = "AI systems that learn after training, developed by aolabs.ai"
+readme = "README.md"
+requires-python = ">=3"
+classifiers = [
+    "Private :: Do Not Upload",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Artificial Life",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+]
+[build-system]
+requires = ["setuptools", "setuptools-scm"] # ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["ao_core"]
+
+[project.urls]
+"Homepage" = "https://www.aolabs.ai"
+"Bug Tracker" = "https://github.com/aolabsai/ao_core/issues"
