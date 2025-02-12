@@ -1,5 +1,9 @@
 import ao_core as ao
+
 from config import api_key
+
+
+ao.ken
 
 agent = ao.Agent("RafiApi_wrapperTest", "recommender3", api_key)
 

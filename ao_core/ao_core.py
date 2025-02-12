@@ -4,7 +4,7 @@ ao_endpoint_url = "https://api.aolabs.ai/v0dev/kennel/agent"
 
 
 
-def kennel_create(self, kennel_name, arch_url, description, permissions="free and open as the sea!"):
+def kennel_create(kennel_name, arch_url, description, permissions="free and open as the sea!"):
     payload = {
         "kennel_name": kennel_name,
         "arch_URL": arch_url,
