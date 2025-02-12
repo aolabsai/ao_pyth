@@ -1,7 +1,7 @@
 import requests
 
 ao_endpoint_url = "https://api.aolabs.ai/v0dev/kennel/agent"
-
+ao_endpoint_create = "https://api.aolabs.ai/v0dev/kennel"
 
 class Arch():
     def __init__(self, api_key):
@@ -20,7 +20,7 @@ class Arch():
             "X-API-KEY": self.api_key
         }
 
-        response = requests.post(ao_endpoint_url, json=payload, headers=headers)
+        response = requests.post(ao_endpoint_create, json=payload, headers=headers)
         return response
 
 
