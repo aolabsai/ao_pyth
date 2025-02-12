@@ -6,7 +6,7 @@ This python repo wraps our api in a easy to use fast pip installable package. It
 
 Install with pip from command line with:
 ```bash
-pip install git+https://github.com/aolabsai/pythonApiWrapper
+pip install githttps://github.com/aolabsai/ao_python
 ```
 
 ## Documentation
