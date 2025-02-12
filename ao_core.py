@@ -11,18 +11,30 @@ class Agent():
         self.api_key = api_key
 
     def next_state(self, INPUT, LABEL=None):
-        payload = {
-            "kennel_id": self.kennel_id, 
-            "agent_id": self.uid,  
-            "INPUT": INPUT, 
+        if LABEL:
+            payload = {
+                "kennel_id": self.kennel_id, 
+                "agent_id": self.uid,  
+                "INPUT": INPUT, 
 
-            "Label": LABEL,
+                "LABEL": LABEL,
 
-            "control": {
-                "US": True,
-                "states": 1,
+                "control": {
+                    "US": True,
+                    "states": 1,
+                }
             }
-        }
+        else:
+            payload = {
+                "kennel_id": self.kennel_id, 
+                "agent_id": self.uid,  
+                "INPUT": INPUT, 
+
+                "control": {
+                    "US": True,
+                    "states": 1,
+                }
+            }
 
         headers = {
             "accept": "application/json",

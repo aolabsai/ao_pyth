@@ -9,5 +9,3 @@ agent_response = response["story"]
 state= response["state"]
 
 print("response:", agent_response, "at state:",state)
-
-agent.agent_delete()
