@@ -8,3 +8,28 @@ Install with pip from command line with:
 ```bash
 pip install git+https://github.com/aolabsai/pythonApiWrapper
 ```
+
+## Documentation
+
+To create a new kennel use:
+```bash
+ao.kennel_create(kennel_name, arch_url, description)
+```
+
+To initalise our agents use
+```bash
+agent = ao.Agent(unique_id, kennel_id, api_key)
+```
+
+To use next_state():
+
+```bash
+agent.next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False, Unsequenced=False, DD=True, Hamming=True, Default=True):
+```
+
+To delete and agent use:
+```bash
+agent.agent_delete()
+```
+
+
