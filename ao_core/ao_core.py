@@ -3,22 +3,25 @@ import requests
 ao_endpoint_url = "https://api.aolabs.ai/v0dev/kennel/agent"
 
 
+class Arch():
+    def __init__(self, api_key):
+        self.api_key = api_key
 
-def kennel_create(kennel_name, arch_url, api_key, description, permissions="free and open as the sea!"):
-    payload = {
-        "kennel_name": kennel_name,
-        "arch_URL": arch_url,
-        "description": description,
-        "permissions": permissions
-    }
-    headers = {
-        "accept": "application/json",
-        "content-type": "application/json",
-        "X-API-KEY": api_key
-    }
+    def kennel_create(self, kennel_name, arch_url, description, permissions="free and open as the sea!"):
+        payload = {
+            "kennel_name": kennel_name,
+            "arch_URL": arch_url,
+            "description": description,
+            "permissions": permissions
+        }
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "X-API-KEY": self.api_key
+        }
 
-    response = requests.post(ao_endpoint_url, json=payload, headers=headers)
-    return response
+        response = requests.post(ao_endpoint_url, json=payload, headers=headers)
+        return response
 
 
 class Agent():
