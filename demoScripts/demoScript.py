@@ -1,4 +1,4 @@
-import ao_core as ao
+import ao_python.ao_python as ao
 from config import api_key  #Get an api key
 
 agent = ao.Agent("Api_wrapperTest", "recommender3", api_key)  # Init agent
