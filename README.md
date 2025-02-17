@@ -6,14 +6,18 @@ This python repo wraps our api in a easy to use fast pip installable package. It
 
 Install with pip from command line with:
 ```bash
-pip install githttps://github.com/aolabsai/ao_python
+pip install git+https://github.com/aolabsai/ao_python
 ```
 
 ## Documentation
 
+To initalise Arch class:
+```bash
+Arch = ao.Arch(api_key)
+```
 To create a new kennel use:
 ```bash
-ao.kennel_create(kennel_name, arch_url, api_key, description)
+Arch.kennel_create(kennel_name, arch_url, description)
 ```
 
 To initalise our agents use

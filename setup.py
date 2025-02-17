@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ao_core",
+    name="ao_python",
     version="0.1.3",
     description="AI systems that learn after training, developed by aolabs.ai",
     long_description="docs.aolabs.ai",
-    url="https://github.com/aolabsai/ao_core",
+    url="https://github.com/aolabsai/ao_python",
     author="AO Labs",
     author_email="eng@aolabs.ai",
     include_package_data=True,
@@ -16,7 +16,6 @@ setup(
         "requests",
     ],
     zip_safe=False,
-    keywords=[""],
     classifiers=[
         "Private :: Do Not Upload",
         "Development Status :: 3 - Alpha",
