@@ -7,13 +7,28 @@ class Arch():
     def __init__(self, api_key):
         self.api_key = api_key
 
-    def kennel_create(self, kennel_name, arch_url, description, permissions="free and open as the sea!"):
-        payload = {
-            "kennel_name": kennel_name,
-            "arch_URL": arch_url,
-            "description": description,
-            "permissions": permissions
-        }
+    def kennel_create(self, kennel_name, arch_i=False, arch_z=False, connector_function="full_conn", connector_parameters="[]", description="None", permissions="free and open as the sea!", arch_url=False):
+        if arch_url:
+            payload = {
+                "kennel_name": kennel_name,
+                "arch_url": arch_url,
+                "description": description,
+                "permissions": permissions
+            }
+        elif arch_i and arch_z:
+            payload = {
+                "kennel_name": kennel_name,
+                "arch": {
+                    "arch_i": arch_i,
+                    "arch_z": arch_z,
+                    "connector_function": connector_function,
+                    "connector_parameters": connector_parameters
+                },
+                "description": description,
+                "permissions": permissions
+            }
+        else:
+            return "Invalid, not specified arch i and arch z or arch_url"
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
