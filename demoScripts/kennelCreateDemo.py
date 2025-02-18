@@ -8,7 +8,7 @@ print(message.text)
 
 agent = ao.Agent(kennel_id="KennelCreateDemoWrapper4", uid = "Agent1", api_key=api_key)
 
-response = agent.next_state(INPUT=[0,0,0], LABEL=[0])
+response = agent.next_state(INPUT=[0,0,0])
 print(response)
 print(response["story"])
 

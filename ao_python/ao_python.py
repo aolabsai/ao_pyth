@@ -65,11 +65,12 @@ class Agent():
                 }
             }
         else:
+            print("no label")
             payload = {
                 "kennel_id": self.kennel_id, 
                 "agent_id": self.uid,  
                 "INPUT": INPUT, 
-
+                "INSTINCTS": Instincts,
                 "control": {
                     "CN": Cneg,
                     "CP": Cpos,
