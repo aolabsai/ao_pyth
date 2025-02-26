@@ -5,7 +5,7 @@ ao_endpoint_create = "https://api.aolabs.ai/v0dev/kennel"
 
 
 
-def Arch( kennel_name, api_key, arch_i=False, arch_z=False, connector_function="full_conn", connector_parameters="[]", description="None", permissions="free and open as the sea!", arch_url=False):
+def Arch(kennel_id, arch_i=False, arch_z=False, connector_function="full_conn", connector_parameters="[]", description="None", permissions="free and open as the sea!", arch_url=False, api_key=""):
     if arch_url:
         payload = {
             "kennel_name": kennel_name,
