@@ -11,13 +11,9 @@ pip install git+https://github.com/aolabsai/ao_python
 
 ## Documentation
 
-To initalise Arch class:
+To create a new Arch use:
 ```bash
-Arch = ao.Arch(api_key)
-```
-To create a new kennel use:
-```bash
-Arch.kennel_create(kennel_name, arch_url, description)
+ao.Arch(api_key=api_key, kennel_name="KennelCreateDemo", arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn")
 ```
 
 To initalise our agents use
