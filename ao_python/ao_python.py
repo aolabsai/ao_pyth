@@ -109,7 +109,7 @@ class Agent():
         return agent_response
 
 
-    def agent_delete(self):
+    def delete(self):
         payload = {
             "kennel_id": self.kennel_id,
             "agent_id": self.uid,
