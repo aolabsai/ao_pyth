@@ -1,6 +1,6 @@
 # The python package wrapper of the ao_core API.
 
-This python repo wraps our api in a easy to use fast pip installable package. It is almost one to one with ao_core so most of the documentation will carry over here, we will add documentation below for futher instructions on how to use the library!
+This python repo wraps our api in a easy to use fast pip installable package. It is almost one to one with ao_core so most of the documentation will carry over here; we will add documentation below for futher instructions on how to use the library!
 
 ## Installation
 
@@ -9,44 +9,39 @@ Install with pip from command line with:
 pip install git+https://github.com/aolabsai/ao_python
 ```
 
+## Authentication & API keys
+To get an API key, please message us on discord: https://discord.gg/mE3WBFaMQy
+
 ## Documentation
 
 To create a new Arch use:
-```bash
-ao.Arch(api_key=api_key, kennel_name="KennelCreateDemo", arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn")
+```python
+arch = ao.Arch(arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn",
+               api_key=api_key, kennel_name=<<insert_unique_ID>>)
 ```
 
-To initalise our agents use
-```bash
-agent = ao.Agent(unique_id, kennel_id, api_key)
+To initalise an Agent use:
+```python
+agent = ao.Agent(Arch=arch, 
+                 api_key=api_key)
 ```
 
-To use next_state():
+To invoke an Agent to get its output, use its next_state method:
+```python
+agent.next_state(INPUT="111"):
 
-```bash
-agent.next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False, Unsequenced=False, DD=True, Hamming=True, Default=True):
+response = agent.next_state(INPUT=input, LABEL=label)
+agent_output = response["story"] # this is the output of the agent for use in your application
+agent_state  = response["state"]
+print("Agent's response: ", agent_output, " - at state: ", agent_state)
 ```
 
-To delete and agent use:
-```bash
+To train an Agent, provide a label with next_state:
+```python
+agent.next_state(INPUT="000", LABEL="0"):
+```
+
+To delete an Agent from our hosted database use:
+```python
 agent.agent_delete()
 ```
-
-## Demo script
-
-```bash
-import ao_core as ao
-from config import api_key  #Get an api key
-
-
-agent = ao.Agent("Api_wrapperTest", "recommender3", api_key)  # Init agent
-
-response = agent.next_state(INPUT=[1, 1, 1, 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], LABEL=[0,0,0,0,0,0,0,0,0,0])  # Next_state method
-
-agent_response = response["story"]  
-state= response["state"]
-
-print("response:", agent_response, "at state:",state)
-```
-
-

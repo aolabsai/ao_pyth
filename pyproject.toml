@@ -7,9 +7,9 @@ dependencies = [
 ]
 authors = [
   { name="AO Labs", email="eng@aolabs.ai" },
-  { name="Ali Al-Ebrahim", email="aee@aolabs.ai" },
+  { name="Rafayel Latif", email="rafayel@aolabs.ai" },
 ]
-description = "AI systems that learn after training, developed by aolabs.ai"
+description = "AI systems that learn like us, developed by aolabs.ai"
 readme = "README.md"
 requires-python = ">=3"
 classifiers = [
