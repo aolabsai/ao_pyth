@@ -43,5 +43,5 @@ agent.next_state(INPUT="000", LABEL="0"):
 
 To delete an Agent from our hosted database use:
 ```python
-agent.agent_delete()
+agent.delete()
 ```
