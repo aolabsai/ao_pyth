@@ -1,4 +1,5 @@
 import requests
+import numpy as np
 
 ao_endpoint_kennel = "https://api.aolabs.ai/v0dev/kennel"
 ao_endpoint_agent = "https://api.aolabs.ai/v0dev/kennel/agent"
@@ -72,6 +73,13 @@ class Agent:
 
     def next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False,
                    DD=True, Hamming=True, Default=True, unsequenced=False): 
+    
+        # handling numpy arrays as input
+        if type(INPUT) is np.ndarray:
+            INPUT = INPUT.tolist()
+        if type(LABEL) is np.ndarray:
+            LABEL = LABEL.tolist()
+
         if LABEL:
             payload = {
                 "kennel_id": self.kennel_id, 
@@ -91,7 +99,6 @@ class Agent:
                 }
             }
         else:
-            print("no label")
             payload = {
                 "kennel_id": self.kennel_id, 
                 "agent_id": self.uid,  

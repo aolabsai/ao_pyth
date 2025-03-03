@@ -18,7 +18,8 @@ agent = ao.Agent(Arch=arch,
 
 
 # Invoking the Agent
-input = np.ones(3)
+input = [1,1,1] # inputs and labels can be lists or 1D numpy arrays of binary ints
+# input = np.ones(3, dtype=int)
 label = [1]
 response = agent.next_state(INPUT=input, LABEL=label)
 
