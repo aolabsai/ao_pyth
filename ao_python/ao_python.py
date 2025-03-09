@@ -1,8 +1,10 @@
 import requests
 import numpy as np
 
-ao_endpoint_kennel = "https://api.aolabs.ai/v0dev/kennel"
-ao_endpoint_agent = "https://api.aolabs.ai/v0dev/kennel/agent"
+stage = "v0dev"
+# TODO add some clever handling to allow users to switch stages
+ao_endpoint_kennel = "https://api.aolabs.ai/"+stage+"/kennel"
+ao_endpoint_agent  = "https://api.aolabs.ai/"+stage+"/kennel/agent"
 
 
 class Arch:
@@ -53,11 +55,13 @@ class Arch:
 
 
 class Agent:
-    def __init__(self, Arch=False, notes="",
+    def __init__(self, Arch=False, notes="", save_meta=False, _steps=1000000,
                  api_key=False, kennel_id=False, uid=False):
         
         # ao_api attributes
         self.uid = uid
+        self.state = 1
+        self.save_meta = False
         # self.error_message = False
         if Arch:
             self.api_key = Arch.api_key
@@ -123,7 +127,10 @@ class Agent:
         }
 
         agent_response = requests.post(ao_endpoint_agent, json=payload, headers=headers).json()
-        return agent_response
+        self.state = agent_response["state"]
+        output = np.asarray(list(agent_response["story"]), dtype="int8")
+
+        return output
     
     def reset_state(self):
         payload = {
