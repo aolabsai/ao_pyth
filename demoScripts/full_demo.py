@@ -7,14 +7,14 @@ from config import api_key
 
 # Creating an Agent Architecture
 arch = ao.Arch(arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn",
-                  api_key=api_key, kennel_id="full_demo_rodal_21")
+                  api_key=api_key, kennel_id="ao_python__full_demo_01")
 # checking if the Arch has been successfully created
 print(arch.api_status)
 
 
 # Creating an Agent using that Arch
 agent = ao.Agent(Arch=arch,
-                 api_key=api_key, uid="full_demo_agent")
+                 api_key=api_key, uid="full_demo_agent_01")
 ## If you don't have an `Arch` variable in your runtime, you can also create/invoke Agents by entering an `api_key` and `kennel_id`
 
 
