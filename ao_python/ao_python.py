@@ -5,9 +5,27 @@ ao_endpoint_kennel = "https://api.aolabs.ai/v0dev/kennel"
 ao_endpoint_agent = "https://api.aolabs.ai/v0dev/kennel/agent"
 
 
+def _set_endpoint(endpoint):
+    if endpoint =="dev":
+        endpoint = "https://api.aolabs.ai/v0dev/kennel"
+    elif endpoint == "prod":
+        endpoint = "https://api.aolabs.ai/kennel"
+    else:
+        raise ValueError(f"Not a valid endpoint: {endpoint}. Valid endpoints are dev or prod")
+    return endpoint
+
 class Arch:
     def __init__(self, arch_i=False, arch_z=False, arch_c=[], connector_function="full_conn", connector_parameters="[]", description="None",
-                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False):
+                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, endpoint="dev"):
+        
+
+        """
+            Initalize Arch
+
+            Params:
+        """
+
+        self.endpoint = _set_endpoint(endpoint.lower())
         self.arch_i = arch_i
         self.arch_z = arch_z
         self.arch_c = []
@@ -20,6 +38,8 @@ class Arch:
         self.kennel_id = kennel_id
         self.permissions = permissions
         self.arch_url = arch_url
+
+
 
         if self.arch_url:
             payload = {
@@ -48,13 +68,13 @@ class Arch:
             "X-API-KEY": f"{self.api_key}"
         }
 
-        response = requests.post(ao_endpoint_kennel, json=payload, headers=headers)
+        response = requests.post(self.endpoint, json=payload, headers=headers)
         self.api_status = response.text
 
 
 class Agent:
     def __init__(self, Arch=False, notes="",
-                 api_key=False, kennel_id=False, uid=False):
+                 api_key=False, kennel_id=False, uid=False, endpoint=False):
         
         # ao_api attributes
         self.uid = uid
@@ -62,14 +82,14 @@ class Agent:
         if Arch:
             self.api_key = Arch.api_key
             self.kennel_id = Arch.kennel_id
+            self.endpoint = Arch.endpoint
         elif kennel_id:
             self.api_key = api_key
             self.kennel_id = kennel_id
-        # else: 
-        #     self.error_message = "You must either use a valid Arch variable or enter an api_key and kennel_id"
-        
-    # if self.error_message:
-    #     some error handling here to help users if they improperly invoke an Agent
+            self.endpoint = _set_endpoint(endpoint.lower())
+        else: 
+            self.error_message = "You must either use a valid Arch variable or enter an api_key and kennel_id"
+            return ValueError(f"{self.error_message}")
 
     def next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False,
                    DD=True, Hamming=True, Default=True, unsequenced=False): 
@@ -123,6 +143,7 @@ class Agent:
         }
 
         agent_response = requests.post(ao_endpoint_agent, json=payload, headers=headers).json()
+        print(agent_response)
         return agent_response
     
     def reset_state(self):
