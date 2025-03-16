@@ -1,6 +1,3 @@
-import numpy as np
-
-import ao_core as ao
 import ao_python as ao
 from config import api_key
 
