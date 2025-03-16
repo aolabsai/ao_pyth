@@ -1,6 +1,3 @@
-import numpy as np
-
-import ao_core as ao
 import ao_python as ao
 from config import api_key
 
@@ -17,12 +14,12 @@ agent = ao.Agent(Arch=arch,
                  api_key=api_key, uid="full_demo_agent_01")
 ## If you don't have an `Arch` variable in your runtime, you can also create/invoke Agents by entering an `api_key` and `kennel_id`
 
-
 # Invoking the Agent
 input = [1,1,1] # inputs and labels can be lists or 1D numpy arrays of binary ints
 # input = np.ones(3, dtype=int)
 label = [1]
 response = agent.next_state(INPUT=input, LABEL=label) # this is the output of the agent for use in your application
+print(response)
 state  = agent.state
 print("Agent's response: ", response, " - at state: ", state)
 
