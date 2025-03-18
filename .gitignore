@@ -1,2 +1,11 @@
 __pycache__/
 ao_python.__pycache__
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
