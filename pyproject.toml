@@ -13,7 +13,6 @@ description = "AI systems that learn like us, developed by aolabs.ai"
 readme = "README.md"
 requires-python = ">=3"
 classifiers = [
-    "Private :: Do Not Upload",
     "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
