@@ -1,15 +1,33 @@
 import requests
 import numpy as np
 
-stage = "v0dev"
-# TODO add some clever handling to allow users to switch stages
-ao_endpoint_kennel = "https://api.aolabs.ai/"+stage+"/kennel"
-ao_endpoint_agent  = "https://api.aolabs.ai/"+stage+"/kennel/agent"
 
+BASE_URL = "https://api.aolabs.ai/"
+
+ENDPOINTS = {
+    "dev": {
+        "kennel": f"{BASE_URL}v0dev/kennel",
+        "agent": f"{BASE_URL}v0dev/kennel/agent"
+    },
+    "prod": {
+        "kennel": f"{BASE_URL}prod/kennel",
+        "agent": f"{BASE_URL}prod/kennel/agent"
+    }
+}
+
+def _set_endpoint(stage, type):
+    stage_key = "dev" if "dev" in stage.lower() else "prod" if "prod" in stage.lower() else None
+    if not stage_key or type not in ENDPOINTS[stage_key]:
+        raise ValueError(f"Invalid stage or type: stage={stage}, type={type}")
+    return ENDPOINTS[stage_key][type]
 
 class Arch:
     def __init__(self, arch_i=False, arch_z=False, arch_c=[], connector_function="full_conn", connector_parameters="[]", description="None",
-                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False):
+                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="dev"):
+        
+        self.endpoint = _set_endpoint(stage, "kennel")
+        self.stage = stage
+
         self.arch_i = arch_i
         self.arch_z = arch_z
         self.arch_c = []
@@ -50,13 +68,13 @@ class Arch:
             "X-API-KEY": f"{self.api_key}"
         }
 
-        response = requests.post(ao_endpoint_kennel, json=payload, headers=headers)
+        response = requests.post(self.endpoint, json=payload, headers=headers)
         self.api_status = response.text
 
 
 class Agent:
     def __init__(self, Arch=False, notes="", save_meta=False, _steps=1000000,
-                 api_key=False, kennel_id=False, uid=False):
+                 api_key=False, kennel_id=False, uid=False, endpoint=False, stage=False):
         
         # ao_api attributes
         self.uid = uid
@@ -66,11 +84,14 @@ class Agent:
         if Arch:
             self.api_key = Arch.api_key
             self.kennel_id = Arch.kennel_id
+            self.endpoint = _set_endpoint(Arch.stage, "agent")   # get agent endpoint
         elif kennel_id:
             self.api_key = api_key
             self.kennel_id = kennel_id
-        # else: 
-        #     self.error_message = "You must either use a valid Arch variable or enter an api_key and kennel_id"
+            self.endpoint = _set_endpoint(stage, "agent")   # get agent endpoint
+        else: 
+            self.error_message = "You must either use a valid Arch variable or enter an api_key and kennel_id"
+            return ValueError(f"{self.error_message}")
         
     # if self.error_message:
     #     some error handling here to help users if they improperly invoke an Agent
@@ -126,7 +147,7 @@ class Agent:
             "X-API-KEY": f"{self.api_key}"
         }
 
-        agent_response = requests.post(ao_endpoint_agent, json=payload, headers=headers).json()
+        agent_response = requests.post(self.endpoint, json=payload, headers=headers).json()
         self.state = agent_response["state"]
         output = np.asarray(list(agent_response["story"]), dtype="int8")
 
@@ -147,7 +168,7 @@ class Agent:
             "content-type": "application/json",
             "X-API-KEY": f"{self.api_key}"
         }
-        agent_response = requests.post(ao_endpoint_agent, json=payload, headers=headers).json()
+        agent_response = requests.post(self.endpoint, json=payload, headers=headers).json()
         return agent_response
 
 
@@ -163,7 +184,7 @@ class Agent:
             "content-type": "application/json",
             "X-API-KEY": f"{self.api_key}"
         }
-        response = requests.post(ao_endpoint_agent, json=payload, headers=headers)
+        response = requests.post(self.endpoint, json=payload, headers=headers)
         return response
 
 
