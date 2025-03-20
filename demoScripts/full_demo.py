@@ -1,5 +1,6 @@
-import ao_python as ao
+import ao_pyth as ao
 from config import api_key
+
 
 
 # Creating an Agent Architecture
