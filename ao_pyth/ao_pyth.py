@@ -31,9 +31,9 @@ class Arch:
         if not ((arch_i and arch_z) or arch_url):
             raise ValueError("You must enter both arch_i and arch_z or provide an arch_url")
             
-        if type(arch_i) or type(arch_z) or type(arch_c) is not str:
-            raise ValueError("Arch must be a string")
-        
+        if not kennel_id:
+            return ValueError(f"You must enter a kennel_id")
+
         self.endpoint = _set_endpoint(stage, "kennel")
         self.stage = stage
 
@@ -87,6 +87,9 @@ class Agent:
         
         # ao_api attributes
         self.uid = uid
+
+        if not uid:
+            return ValueError(f"You must enter a uid")
         self.state = 1
         self.save_meta = False           
 
