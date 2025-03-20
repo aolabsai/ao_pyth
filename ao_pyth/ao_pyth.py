@@ -26,13 +26,16 @@ class Arch:
                  api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="dev"):
         
         if not api_key:
-            return ValueError(f"You must enter an api_key")
+            raise ValueError(f"You must enter an api_key")
 
         if not ((arch_i and arch_z) or arch_url):
             raise ValueError("You must enter both arch_i and arch_z or provide an arch_url")
+        
+        if type(arch_i) or type(arch_z) or type(arch_c) is not str:
+            raise ValueError("Arch must be a string")
             
         if not kennel_id:
-            return ValueError(f"You must enter a kennel_id")
+            raise ValueError(f"You must enter a kennel_id")
 
         self.endpoint = _set_endpoint(stage, "kennel")
         self.stage = stage
@@ -89,7 +92,7 @@ class Agent:
         self.uid = uid
 
         if not uid:
-            return ValueError(f"You must enter a uid")
+            raise ValueError(f"You must enter a uid")
         self.state = 1
         self.save_meta = False           
 
@@ -99,12 +102,12 @@ class Agent:
             self.endpoint = _set_endpoint(Arch.stage, "agent")   # get agent endpoint
         elif kennel_id:
             if not api_key:
-                return ValueError(f"You must enter an api_key")
+                raise ValueError(f"You must enter an api_key")
             self.api_key = api_key
             self.kennel_id = kennel_id
             self.endpoint = _set_endpoint(stage, "agent")   # get agent endpoint
         else: 
-            return ValueError(f"You must either use a valid Arch variable or enter an api_key and kennel_id")
+            raise ValueError(f"You must either use a valid Arch variable or enter an api_key and kennel_id")
 
     def next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False,
                    DD=True, Hamming=True, Default=True, unsequenced=False): 
