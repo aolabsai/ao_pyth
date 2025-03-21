@@ -31,9 +31,12 @@ class Arch:
         if not ((arch_i and arch_z) or arch_url):
             raise ValueError("You must enter both arch_i and arch_z or provide an arch_url")
         
-        if type(arch_i) or type(arch_z) or type(arch_c) is not str:
-            raise ValueError("Arch must be a string")
-            
+        if type(arch_i) is not str:
+            arch_i = str(arch_i)
+
+        if type(arch_z) is not str:
+            arch_z = str(arch_z)
+
         if not kennel_id:
             raise ValueError(f"You must enter a kennel_id")
 
