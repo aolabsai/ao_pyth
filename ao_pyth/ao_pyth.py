@@ -22,9 +22,24 @@ def _set_endpoint(stage, type):
     return ENDPOINTS[stage_key][type]
 
 class Arch:
-    def __init__(self, arch_i=False, arch_z=False, arch_c=[], connector_function="full_conn", connector_parameters="[]", description="None",
+    def __init__(self, arch_i=False, arch_z=False, arch_c="[]", connector_function="full_conn", connector_parameters="[]", description="None",
                  api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="dev"):
         
+        if not api_key:
+            raise ValueError(f"You must enter an api_key")
+
+        if not ((arch_i and arch_z) or arch_url):
+            raise ValueError("You must enter both arch_i and arch_z or provide an arch_url")
+        
+        if type(arch_i) is not str:
+            arch_i = str(arch_i)
+
+        if type(arch_z) is not str:
+            arch_z = str(arch_z)
+
+        if not kennel_id:
+            raise ValueError(f"You must enter a kennel_id")
+
         self.endpoint = _set_endpoint(stage, "kennel")
         self.stage = stage
 
@@ -78,23 +93,24 @@ class Agent:
         
         # ao_api attributes
         self.uid = uid
+
+        if not uid:
+            raise ValueError(f"You must enter a uid")
         self.state = 1
-        self.save_meta = False
-        # self.error_message = False
+        self.save_meta = False           
+
         if Arch:
             self.api_key = Arch.api_key
             self.kennel_id = Arch.kennel_id
             self.endpoint = _set_endpoint(Arch.stage, "agent")   # get agent endpoint
         elif kennel_id:
+            if not api_key:
+                raise ValueError(f"You must enter an api_key")
             self.api_key = api_key
             self.kennel_id = kennel_id
             self.endpoint = _set_endpoint(stage, "agent")   # get agent endpoint
         else: 
-            self.error_message = "You must either use a valid Arch variable or enter an api_key and kennel_id"
-            return ValueError(f"{self.error_message}")
-        
-    # if self.error_message:
-    #     some error handling here to help users if they improperly invoke an Agent
+            raise ValueError(f"You must either use a valid Arch variable or enter an api_key and kennel_id")
 
     def next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False,
                    DD=True, Hamming=True, Default=True, unsequenced=False): 

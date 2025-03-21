@@ -2,7 +2,6 @@ import ao_pyth as ao
 from config import api_key
 
 
-
 # Creating an Agent Architecture
 arch = ao.Arch(arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn",
                   api_key=api_key, kennel_id="ao_python__full_demo_01", stage="dev")
