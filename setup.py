@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="ao_pyth",
-    version="0.1.4",
+    version="0.1.5",
     description="AI systems that learn like us, developed by aolabs.ai",
     long_description="docs.aolabs.ai",
     url="https://github.com/aolabsai/ao_python",
