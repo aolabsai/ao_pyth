@@ -113,7 +113,7 @@ class Agent:
             raise ValueError(f"You must either use a valid Arch variable or enter an api_key and kennel_id")
 
     def next_state(self, INPUT, LABEL=None, Instincts=False, Cneg=False, Cpos=False,
-                   DD=True, Hamming=True, Default=True, unsequenced=False): 
+                   DD=True, Hamming=True, Default=True, unsequenced=True): 
     
         # handling numpy arrays as input
         if type(INPUT) is np.ndarray:
