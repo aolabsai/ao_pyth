@@ -23,7 +23,7 @@ def _set_endpoint(stage, type):
 
 class Arch:
     def __init__(self, arch_i=False, arch_z=False, arch_c="[]", connector_function="full_conn", connector_parameters="[]", description="None",
-                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="dev"):
+                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="prod"):
         
         if not api_key:
             raise ValueError(f"You must enter an api_key")
