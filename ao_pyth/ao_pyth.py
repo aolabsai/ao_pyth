@@ -59,7 +59,7 @@ class Arch:
         if self.arch_url:
             payload = {
                 "kennel_name": self.kennel_id,
-                "email": email,
+                "email": self.email,
                 "arch_url": self.arch_url,
                 "description": self.description,
                 "permissions": self.permissions
@@ -67,7 +67,7 @@ class Arch:
         elif arch_i and arch_z:
             payload = {
                 "kennel_name": self.kennel_id,
-                "email": email,
+                "email": self.email,
                 "arch": {
                     "arch_i": self.arch_i,
                     "arch_z": self.arch_z,
@@ -103,6 +103,7 @@ class Agent:
 
         if Arch:
             self.api_key = Arch.api_key
+            self.email = Arch.email
             self.kennel_id = Arch.kennel_id
             self.endpoint = _set_endpoint(Arch.stage, "agent")   # get agent endpoint
         elif kennel_id:
