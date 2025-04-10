@@ -91,8 +91,7 @@ class Arch:
 
 class Agent:
     def __init__(self, Arch=False, notes="", save_meta=False, _steps=1000000,
-                 api_key=False, email="ao_pyth_default@aolabs.ai", kennel_id=False, uid=False, endpoint=False, stage="prod"):
-        
+                 api_key=False, email="ao_pyth_default@aolabs.ai", kennel_id=False, uid=False, stage="prod"):
         # ao_api attributes
         self.uid = uid
 
