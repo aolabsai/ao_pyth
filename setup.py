@@ -13,7 +13,8 @@ setup(
     setup_requires=["setuptools_scm"],
     packages=find_packages(exclude=["tests", "tests.*"]),   # maybe change this to match https://stackoverflow.com/questions/14417236/setup-py-renaming-src-package-to-project-name
     install_requires=[
-        "requests",     
+        "requests",
+        "numpy",
     ],
     zip_safe=False,
     classifiers=[

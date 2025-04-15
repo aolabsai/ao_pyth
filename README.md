@@ -6,7 +6,9 @@ This python repo wraps our api in a easy to use fast pip installable package. It
 
 Install with pip from command line with:
 ```bash
-pip install git+https://github.com/aolabsai/ao_python
+pip install ao_pyth # https://pypi.org/project/ao-pyth/
+# or
+pip install git+https://github.com/aolabsai/ao_pyth
 ```
 
 ## Authentication & API keys

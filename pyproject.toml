@@ -4,6 +4,7 @@ version = "0.1.5"
 license = {file = "LICENSE.txt"}
 dependencies = [
     "requests",
+    "numpy",
 ]
 authors = [
   { name="AO Labs", email="eng@aolabs.ai" },
