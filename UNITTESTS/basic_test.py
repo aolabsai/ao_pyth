@@ -1,6 +1,7 @@
 import unittest
 import ao_pyth as ao
-from config import api_key
+import os
+api_key = os.getenv("API_KEY")  
 
 class TestApi(unittest.TestCase):
 

@@ -26,6 +26,9 @@ jobs:
           pip install -r requirements.txt  
           pip install .
 
+      - name: Set API Key as env var
+        run: echo "API_KEY=${{secrets.API_KEY}}" >> $GITHUB_ENV
+
       - name: Run Unit Tests
         run: |
           python -m unittest UNITTESTS.basic_tests
