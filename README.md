@@ -2,7 +2,7 @@
 
 This python repo wraps our api in a easy to use fast pip installable package. It is almost one to one with ao_core so most of the documentation will carry over here; we will add documentation below for futher instructions on how to use the library!
 
-## Installation
+## Installation & Use
 
 Install with pip from command line with:
 ```bash
@@ -11,8 +11,12 @@ pip install ao_pyth # https://pypi.org/project/ao-pyth/
 pip install git+https://github.com/aolabsai/ao_pyth
 ```
 
+This open source reference design repo will walk you through a simple application using this library: https://github.com/aolabsai/ao_loop1/
+
+
 ## Authentication & API keys
 To get an API key, please message us on discord: https://discord.gg/mE3WBFaMQy
+
 
 ## Documentation
 
