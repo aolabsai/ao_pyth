@@ -31,4 +31,4 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          python -m unittest UNITTESTS.basic_tests
+          python -m unittest UNITTESTS.basic_test
