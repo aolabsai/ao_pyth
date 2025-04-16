@@ -1,7 +1,6 @@
 import requests
 import numpy as np
 
-
 BASE_URL = "https://api.aolabs.ai/"
 
 ENDPOINTS = {
@@ -23,7 +22,7 @@ def _set_endpoint(stage, type):
 
 class Arch:
     def __init__(self, arch_i=False, arch_z=False, arch_c="[]", connector_function="full_conn", connector_parameters="[]", description="None",
-                 api_key="", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="prod"):
+                 api_key="", email="ao_pyth_default@aolabs.ai", kennel_id=False, permissions="free and open as the sea!", arch_url=False, stage="prod"):
         
         if not api_key:
             raise ValueError(f"You must enter an api_key")
@@ -52,6 +51,7 @@ class Arch:
 
         # ao_api attributes
         self.api_key = api_key
+        self.email = email
         self.kennel_id = kennel_id
         self.permissions = permissions
         self.arch_url = arch_url
@@ -59,6 +59,7 @@ class Arch:
         if self.arch_url:
             payload = {
                 "kennel_name": self.kennel_id,
+                "email": self.email,
                 "arch_url": self.arch_url,
                 "description": self.description,
                 "permissions": self.permissions
@@ -66,6 +67,7 @@ class Arch:
         elif arch_i and arch_z:
             payload = {
                 "kennel_name": self.kennel_id,
+                "email": self.email,
                 "arch": {
                     "arch_i": self.arch_i,
                     "arch_z": self.arch_z,
@@ -89,8 +91,7 @@ class Arch:
 
 class Agent:
     def __init__(self, Arch=False, notes="", save_meta=False, _steps=1000000,
-                 api_key=False, kennel_id=False, uid=False, endpoint=False, stage="prod"):
-        
+                 api_key=False, email="ao_pyth_default@aolabs.ai", kennel_id=False, uid=False, stage="prod"):
         # ao_api attributes
         self.uid = uid
 
@@ -101,12 +102,14 @@ class Agent:
 
         if Arch:
             self.api_key = Arch.api_key
+            self.email = Arch.email
             self.kennel_id = Arch.kennel_id
             self.endpoint = _set_endpoint(Arch.stage, "agent")   # get agent endpoint
         elif kennel_id:
             if not api_key:
                 raise ValueError(f"You must enter an api_key")
             self.api_key = api_key
+            self.email = email
             self.kennel_id = kennel_id
             self.endpoint = _set_endpoint(stage, "agent")   # get agent endpoint
         else: 
@@ -124,6 +127,7 @@ class Agent:
         if LABEL:
             payload = {
                 "kennel_id": self.kennel_id, 
+                "email": self.email,
                 "agent_id": self.uid,  
                 "INPUT": INPUT, 
                 "LABEL": LABEL,
@@ -141,7 +145,8 @@ class Agent:
             }
         else:
             payload = {
-                "kennel_id": self.kennel_id, 
+                "kennel_id": self.kennel_id,
+                "email": self.email,
                 "agent_id": self.uid,  
                 "INPUT": INPUT, 
                 "INSTINCTS": Instincts,
@@ -171,9 +176,9 @@ class Agent:
     
     def reset_state(self):
         payload = {
-                "kennel_id": self.kennel_id, 
-                "agent_id": self.uid,  
-
+                "kennel_id": self.kennel_id,
+                "email": self.email,
+                "agent_id": self.uid,
                 "control": {
                     "US": True,
                 }
@@ -191,6 +196,7 @@ class Agent:
     def delete(self):
         payload = {
             "kennel_id": self.kennel_id,
+            "email": self.email,
             "agent_id": self.uid,
             "request": "delete_agent"
         }
@@ -202,5 +208,3 @@ class Agent:
         }
         response = requests.post(self.endpoint, json=payload, headers=headers)
         return response
-
-
