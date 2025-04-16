@@ -8,7 +8,6 @@ arch = ao.Arch(arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn",
 # checking if the Arch has been successfully created
 print(arch.api_status)
 
-
 # Creating an Agent using that Arch
 agent = ao.Agent(Arch=arch,
                  api_key=ao_apikey, uid="full_demo_agent_01")
