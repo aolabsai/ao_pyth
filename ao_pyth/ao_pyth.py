@@ -58,7 +58,7 @@ class Arch:
 
         if self.arch_url:
             payload = {
-                "kennel_name": self.kennel_id,
+                "kennel_id": self.kennel_id,
                 "email": self.email,
                 "arch_url": self.arch_url,
                 "description": self.description,
@@ -66,7 +66,7 @@ class Arch:
             }
         elif arch_i and arch_z:
             payload = {
-                "kennel_name": self.kennel_id,
+                "kennel_id": self.kennel_id,
                 "email": self.email,
                 "arch": {
                     "arch_i": self.arch_i,
@@ -87,6 +87,7 @@ class Arch:
 
         response = requests.post(self.endpoint, json=payload, headers=headers)
         self.api_status = response.text
+        self.payload = payload
 
 
 class Agent:
