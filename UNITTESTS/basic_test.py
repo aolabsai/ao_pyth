@@ -18,12 +18,12 @@ class TestApi(unittest.TestCase):
             "newly created Kennel" in arch.api_status or "Oops-- a kennel with this name" in arch.api_status,
         )
 
-    # def test_agent_invoke_train(self):
-    #     arch = ao.Arch([1, 1, 1], [1], api_key=api_key, kennel_id="unittestcase-1", stage="prod")
-    #     print(arch.api_status)
-    #     agent = ao.Agent(arch, uid="agentInvokeUnitTestAOPyth")
-    #     response = agent.next_state([1,1,1], [1])
-    #     self.assertEqual(response, 1)
+    def test_agent_invoke_train(self):
+        arch = ao.Arch([1, 1, 1], [1], api_key=api_key, kennel_id="unittestcase-1", stage="prod")
+        print(arch.api_status)
+        agent = ao.Agent(arch, uid="agentInvokeUnitTestAOPyth")
+        response = agent.next_state([1,1,1], [1])
+        self.assertEqual(response, 1)
         
 if __name__ == '__main__':
     unittest.main()
