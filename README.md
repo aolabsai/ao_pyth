@@ -23,7 +23,7 @@ To get an API key, please message us on discord: https://discord.gg/mE3WBFaMQy
 To create a new Arch use:
 ```python
 arch = ao.Arch(arch_i="[1, 1, 1]", arch_z="[1]", connector_function="full_conn",
-               api_key=api_key, kennel_name=<<insert_unique_ID>>)
+               api_key=api_key, email=<<insert_email>>, kennel_id=<<insert_unique_ID>>)
 ```
 
 To initalise an Agent use:
